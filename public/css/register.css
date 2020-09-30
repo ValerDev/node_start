@@ -1,0 +1,98 @@
+.register-wrapper{
+    min-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282726;
+}
+.register{
+    padding: 2em 3em;
+    background: linear-gradient(346deg, rgb(49, 49, 49) 20%, rgba(36,37,38,1) 100%);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);  
+    border-radius: 17px;
+}
+.register h1{
+    color: #468c3d;
+    text-align: center;
+    margin: 0 0 1em;
+}
+.register form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.register form input ,.register form select{  
+    margin: .3em 0 1em;
+    padding: .7em;
+    background-color: #3a3b3c!important;
+    border: none;
+    color: #e5e5e5;
+    border-radius: 17px;     
+    width: 25em;
+}
+
+.register form input[type = checkbox]{
+    width: max-content;  
+}
+.register form input[type = radio]{
+width: max-content;
+}
+
+.register form label{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    color: #74b05b ;
+    position: relative;
+}
+.register form .block{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.register form .subbmit{
+    border: none;
+    cursor: pointer;
+    background-color: #468c3d;
+    padding: .8em 2em;
+    color: #e5e5e5;
+    border-radius: 5px;
+}
+.register form button:hover{
+    background-color: #74b05b;
+    color: #282726;
+}
+.register form button:active{
+    transform: scale(.95);
+}
+.picBtn{
+    border: none;
+    cursor: pointer;
+    background-color: #468c3d;
+    padding: .8em 2em;
+    color: #e5e5e5;
+    border-radius: 18px;
+    margin: .5em 0 0;
+    position: relative;
+}
+.choosePic{
+    width: max-content!important;
+    cursor: pointer!important;
+}
+#profilePic{
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    cursor: pointer;
+}

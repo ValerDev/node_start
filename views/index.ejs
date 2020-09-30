@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account</title>
+    <link rel="stylesheet" href="/public/css/index.css">
+</head>
+<style>
+    .home-wrapper {
+        display: flex;
+        align-items: center;
+        padding: 1em 2em;
+    }
+
+    .home-content {
+        width: 100%;
+        position: relative;
+    }
+
+    .home-content h1 {
+        color: #468c3d;
+        text-align: center;
+        width: 100%;
+        font-size: 50px;
+        margin: 0 0 1em;
+    }
+
+    .home-content h3 {
+        color: #74b05b;
+    }
+
+    .profile-wrapper {
+        display: flex;
+        width: max-content;
+        padding: 1em 2em;
+        background: linear-gradient(346deg, rgb(49, 49, 49) 20%, rgba(36, 37, 38, 1) 100%);
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+        border-radius: 17px;
+        flex-direction: column;
+    }
+
+    .prifilePic {
+        width: 120px;
+        height: 120px;
+        background-color: #222222;
+        border-radius: 50%;
+        margin: 0em auto 1em;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .signOutBtn {
+        border: none;
+        cursor: pointer;
+        background-color: #468c3d;
+        padding: .8em 2em;
+        color: #e5e5e5;
+        border-radius: 5px;
+        position: absolute;
+        right: 1em;
+        top: .5em;
+    }
+
+    .signOutBtn:hover {
+        background-color: #74b05b;
+    }
+
+    .signOutBtn:active {
+        transform: scale(.95);
+    }
+</style>
+
+<body>
+    <div class="home-wrapper">
+        <div class="home-content">
+            <h1>My account</h1>
+            <button type="button" class="signOutBtn" onclick="loguot(<%logged%>)">Sign out</button>
+            <div class="profile-wrapper">
+                <% if (logged) { %>
+
+                <div class="prifilePic" style="background-image: url(../public/images/<%=data.profilePic%>);">
+                </div>
+                <h3> <%- data.name %> <%- data.lastname %> </h3>
+                <% function calculateAge(y, m, d) {
+                    var _birth = parseInt("" + y + affixZero(m) + affixZero(d));
+                    var  today = new Date();
+                    var _today = parseInt("" + today.getFullYear() + affixZero(today.getMonth() + 1) + affixZero(today.getDate()));
+                    return parseInt((_today - _birth) / 10000);
+                }
+                function affixZero(int) {
+                    if (int < 10) int = "0" + int;
+                    return "" + int;
+                } 
+                const age = calculateAge(data.birthday.split("-")[0], data.birthday.split("-")[1], data.birthday.split("-")[2]);
+                %>
+                <h3>age: <%= age %> </h3>
+                <h3>Gender: <%= data.gender %> </h3>
+                <% } %>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const loguot = (e) =>{
+            e = false
+            console.log(e);
+            document.location.href = "/"
+        };
+     
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+.login-wrapper{
+    max-width: 100%;
+    width: 100%;
+    max-height: 100vh;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #282726;
+}
+.toRegister{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1em;
+    width: 280px;
+    color: #afa9a3;
+    float: right;
+
+}
+.toRegister a{
+    text-decoration: none;
+    background-color: #468c3d;
+    padding: .8em 2em;
+    color: #e5e5e5;
+    border-radius: 5px;
+}
+.toRegister a:hover{
+    background-color: #74b05b;
+}
+.toRegister a:active{
+    transform: scale(.95);
+}
+.login{
+    padding: 2em 3em;
+    background: linear-gradient(346deg, rgb(41, 40, 40) 20%, rgba(36,37,38,1) 100%);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);  
+    border-radius: 17px;
+    margin-top: 8em;
+
+}
+.login h1{
+    color: #468c3d;
+    text-align: center;
+    margin: 0 0 1em;
+}
+.login form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.login form input{  
+    margin: 1em .5em;
+    padding: .7em;
+    background-color: #3a3b3c!important;
+    border: none;
+    color: #e5e5e5;
+    border-radius: 17px;     
+    width: 25em;
+}
+.login form input[type = checkbox]{
+    width: max-content;  
+}
+.login form label{
+    display: flex;
+    align-items: center;
+    color: #74b05b ;
+}
+.login form .block{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+.login form button{
+    border: none;
+    cursor: pointer;
+    background-color: #468c3d;
+    padding: .8em 2em;
+    color: #e5e5e5;
+    border-radius: 5px;
+}
+.login form button:hover{
+    background-color: #74b05b;
+}
+.login form button:active{
+    transform: scale(.95);
+}

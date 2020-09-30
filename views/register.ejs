@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/register.css">
+    <title>Registration</title>
+</head>
+
+<body>
+    <div class="register-wrapper">
+        <div class="register">
+            <h1>Sign up</h1>
+            <form method="POST" action="/login">
+                <div class="block">
+                    <label for="name">
+                        Name
+                        <input type="text" name="name" placeholder="Name" autocomplete="off">
+                    </label>
+                    <label for="Lastname">
+                        Lastname
+                        <input type="text" name="lastname" placeholder="Lastame" autocomplete="off">
+                    </label>
+                    <label for="gender">Gender
+                        <select name="gender" id="Male">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </label>
+                    <label for="birthday">Birthday:
+                        <input type="date" id="birthday" name="birthday">
+                    </label>
+                    <label for="profilePic" style="    padding: 0em 0 .5em 0px;" class="choosePic">Select a profile picture
+                        <button type="button" class="picBtn">Choose file
+                        <input type="file" id="profilePic" name="profilePic" >
+                        </button>
+                    </label>
+                    <label for="email">
+                        Email
+                        <input type="email" name="email" placeholder="Email" autocomplete="off">
+                    </label>
+                    <label for="password">
+                        Password
+                        <input type="password" name="password" placeholder="Password" autocomplete="off">
+                    </label>
+                    <label for="confirmPassword">
+                        Repeat Password
+                        <input type="password" name="repeat_password" placeholder="Repeat  Password" autocomplete="off">
+                    </label>
+                </div>
+
+                <button class="subbmit" type="submit">Sign up</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>

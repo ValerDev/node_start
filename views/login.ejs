@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/css/index.css">
+    <link rel="stylesheet" href="/public/css/login.css">
+    <title>login</title>
+</head>
+
+<body>
+    <div class="toRegister">
+        Don't have account?
+        <a href="/registration">Sign up</a>
+    </div>
+    <div class="login-wrapper">
+        <div class="login">
+            <h1>Sign in</h1>
+            <form action="/" method="POST">
+                <div class="block">
+                    <label for="email">
+                        Email:
+                        <input type="email" name="email" placeholder="Email" autocomplete="off">
+                    </label>
+                    <label for="password">
+                        Password:
+                        <input type="password" name="password" placeholder="Password" autocomplete="off">
+                    </label>
+                </div>
+                <label for="check">
+                    Remember me
+                    <input type="checkbox" name="check" >
+                </label>
+                <button type="submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
