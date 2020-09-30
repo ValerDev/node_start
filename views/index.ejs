@@ -84,17 +84,12 @@
                 <div class="prifilePic" style="background-image: url(../public/images/<%=data.profilePic%>);">
                 </div>
                 <h3> <%- data.name %> <%- data.lastname %> </h3>
-                <% function calculateAge(y, m, d) {
-                    var _birth = parseInt("" + y + affixZero(m) + affixZero(d));
-                    var  today = new Date();
-                    var _today = parseInt("" + today.getFullYear() + affixZero(today.getMonth() + 1) + affixZero(today.getDate()));
-                    return parseInt((_today - _birth) / 10000);
+                <% function calculateAge(birthday) { // birthday is a date
+                    let ageDifMs = Date.now() - birthday.getTime();
+                    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+                    return Math.abs(ageDate.getUTCFullYear() - 1970);
                 }
-                function affixZero(int) {
-                    if (int < 10) int = "0" + int;
-                    return "" + int;
-                } 
-                const age = calculateAge(data.birthday.split("-")[0], data.birthday.split("-")[1], data.birthday.split("-")[2]);
+                const age = calculateAge(new Date(data.birthday.split("-")[0], data.birthday.split("-")[1], data.birthday.split("-")[2]));
                 %>
                 <h3>age: <%= age %> </h3>
                 <h3>Gender: <%= data.gender %> </h3>

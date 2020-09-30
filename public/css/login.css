@@ -13,7 +13,6 @@
     align-items: center;
     justify-content: space-between;
     padding: 1em;
-    width: 280px;
     color: #afa9a3;
     float: right;
 
@@ -24,6 +23,7 @@
     padding: .8em 2em;
     color: #e5e5e5;
     border-radius: 5px;
+    margin: .5em;    
 }
 .toRegister a:hover{
     background-color: #74b05b;
