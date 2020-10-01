@@ -27,7 +27,7 @@
     align-items: center;
 }
 .register form input ,.register form select{  
-    margin: .3em 0 1em;
+    margin: .3em 0 .3em;
     padding: .4em .7em;
     background-color: #3a3b3c!important;
     border: none;
@@ -56,13 +56,14 @@ width: max-content;
     flex-direction: column;
     align-items: flex-start;
 }
-.register form .subbmit{
+.register form .submitBtn{
     border: none;
     cursor: pointer;
     background-color: #468c3d;
     padding: .5em 2em;
     color: #e5e5e5;
     border-radius: 5px;
+    margin: .2em 0;
 }
 .register form button:hover{
     background-color: #74b05b;

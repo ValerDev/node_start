@@ -84,9 +84,9 @@
                 <div class="prifilePic" style="background-image: url(../public/images/<%=data.profilePic%>);">
                 </div>
                 <h3> <%- data.name %> <%- data.lastname %> </h3>
-                <% function calculateAge(birthday) { // birthday is a date
+                <% function calculateAge(birthday) { 
                     let ageDifMs = Date.now() - birthday.getTime();
-                    let ageDate = new Date(ageDifMs); // miliseconds from epoch
+                    let ageDate = new Date(ageDifMs); 
                     return Math.abs(ageDate.getUTCFullYear() - 1970);
                 }
                 const age = calculateAge(new Date(data.birthday.split("-")[0], data.birthday.split("-")[1], data.birthday.split("-")[2]));

@@ -42,7 +42,7 @@ app.post("/", urlencodedParser, (req, res) => {
 
     for (let i in jsonAuth) {
         const user = jsonAuth[i]
-        if (user.email === sendedInfo.email && user.password === sendedInfo.password) {
+        if (user.email.toLowerCase() === sendedInfo.email.toLowerCase() && user.password === sendedInfo.password) {
             log = true;
             if (log) res.render('index', { data: user, logged: log })
             return;

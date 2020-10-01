@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="/public/css/index.css">
     <link rel="stylesheet" href="/public/css/register.css">
     <title>Registration</title>
+    <style>
+        .disable {
+            opacity: .6 !important;
+            pointer-events: none !important;
+            cursor: not-allowed !important;
+        }
+
+        .invalidName,
+        .invalidEmail,
+        .invalidLastname {
+            font-family: 'Courier New', Courier, monospace;
+            color: crimson;
+            font-size: 12px;
+            padding: 0;
+            margin: 0;
+            opacity: 0;
+            transition: .3s;
+            pointer-events: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -17,11 +37,16 @@
                 <div class="block">
                     <label for="name">
                         Name
-                        <input type="text" name="name" placeholder="Name" autocomplete="off">
+                        <input type="text" id="name" name="name" placeholder="Name" autocomplete="off"
+                            onchange="handleNameChange()">
+                        <p class="invalidName">Name must contain only letters !</p>
                     </label>
                     <label for="Lastname">
                         Lastname
-                        <input type="text" name="lastname" placeholder="Lastame" autocomplete="off">
+                        <input type="text" id="lastname" name="lastname" placeholder="Lastame" autocomplete="off"
+                            onchange="handleLastnameChange()">
+                        <p class="invalidLastname">Lastname must contain only letters !</p>
+
                     </label>
                     <label for="gender">Gender
                         <select name="gender" id="Male">
@@ -32,14 +57,18 @@
                     <label for="birthday">Birthday
                         <input type="date" id="birthday" name="birthday">
                     </label>
-                    <label for="profilePic" style="    padding: 0em 0 .5em 0px;" class="choosePic">Select a profile picture
+                    <label for="profilePic" style="    padding: 0em 0 .5em 0px;" class="choosePic">Select a profile
+                        picture
                         <button type="button" class="picBtn">Choose file
-                        <input type="file" id="profilePic" name="profilePic" >
+                            <input type="file" id="profilePic" name="profilePic">
                         </button>
                     </label>
                     <label for="email">
                         Email
-                        <input type="email" name="email" placeholder="Email" autocomplete="off">
+                        <input type="email" name="email" id="email" placeholder="Email" autocomplete="off"
+                            onchange="handleEmailChange()">
+                        <p class="invalidEmail">invalid email!</p>
+
                     </label>
                     <label for="password">
                         Password
@@ -50,12 +79,63 @@
                         <input type="password" name="repeat_password" placeholder="Repeat  Password" autocomplete="off">
                     </label>
                 </div>
+                <button class="submitBtn disable" type="submit" onclick="checkInputs()">Sign up</button>
 
-                <button class="subbmit" type="submit">Sign up</button>
             </form>
         </div>
     </div>
 
-</body>
+    <script>
+        state = {
+            name: false,
+            email: false,
+            lastname: false,
+            validEmail: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/,
+            validName: /^[a-zA-Z\-]+$/,
+            validLastname: /^[a-zA-Z\-]+$/
+        }
 
-</html>
+
+        const handleNameChange = () => {
+            const name = document.querySelector("#name")
+            state.validName.test(name.value) && name.value ? state.name = true : state.name = false;
+            checkInputs()
+        };
+        const handleLastnameChange = () => {
+            const lastname = document.querySelector("#lastname")
+            state.validLastname.test(lastname.value) && lastname.value ? state.lastname = true : state.lastname = false;
+            checkInputs()
+        };
+        const handleEmailChange = () => {
+            const email = document.querySelector("#email")
+            state.validEmail.test(email.value) && email.value ? state.email = true : state.email = false;
+            checkInputs()
+        };
+
+        const checkInputs = () => {
+            if (state.name) {
+                document.querySelector(".invalidName").style.opacity = 0
+            } else {
+                document.querySelector(".invalidName").style.opacity = 1;
+                return
+            }
+            if (state.lastname) {
+                document.querySelector(".invalidLastname").style.opacity = 0
+            } else {
+                document.querySelector(".invalidLastname").style.opacity = 1;
+                return
+            }
+            if (state.email) {
+                document.querySelector(".invalidEmail").style.opacity = 0;
+            } else {
+                document.querySelector(".invalidEmail").style.opacity = 1;
+                return
+            }
+            if(state.name && state.email && state.lastname){
+                document.querySelector(".submitBtn").classList.remove("disable")
+            }else{
+                document.querySelector(".submitBtn").classList.add("disable")
+            }
+        }
+    </script>
+</body>
