@@ -16,7 +16,9 @@
 
         .invalidName,
         .invalidEmail,
-        .invalidLastname {
+        .invalidLastname,
+        .invalidPass,
+        .invalidRepeatPass {
             font-family: 'Courier New', Courier, monospace;
             color: crimson;
             font-size: 12px;
@@ -33,7 +35,7 @@
     <div class="register-wrapper">
         <div class="register">
             <h1>Sign up</h1>
-            <form method="POST" action="/login">
+            <form method="POST" action="/login" onclick="checkAll()">
                 <div class="block">
                     <label for="name">
                         Name
@@ -72,14 +74,17 @@
                     </label>
                     <label for="password">
                         Password
-                        <input type="password" name="password" placeholder="Password" autocomplete="off">
+                        <input type="password" id="pass" name="password" placeholder="Password" autocomplete="off" onchange="handlePasswordChange()">
+                        <p class="invalidPass">Password must contain min 6 chars</p>
                     </label>
                     <label for="confirmPassword">
                         Repeat Password
-                        <input type="password" name="repeat_password" placeholder="Repeat  Password" autocomplete="off">
+                        <input type="password" id="pass_rep" name="repeat_password" placeholder="Repeat  Password"
+                            autocomplete="off" onchange="arePassEqual()">
+                        <p class="invalidRepeatPass">Passwords not equal</p>
                     </label>
                 </div>
-                <button class="submitBtn disable" type="submit" onclick="checkInputs()">Sign up</button>
+                <button class="submitBtn disable" type="button" >Sign up</button>
 
             </form>
         </div>
@@ -90,51 +95,87 @@
             name: false,
             email: false,
             lastname: false,
+            password: false,
+            passwordRepeat: false,
             validEmail: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/,
             validName: /^[a-zA-Z\-]+$/,
             validLastname: /^[a-zA-Z\-]+$/
         }
 
 
+        const checkAll = () => {
+            if (state.name && state.email && state.lastname && state.password && state.passwordRepeat) {
+                console.log(state);
+                document.querySelector(".submitBtn").classList.remove("disable")
+                document.querySelector(".submitBtn").type = "submit"
+            } else {
+                console.log(state);
+
+                document.querySelector(".submitBtn").type = "button"
+                document.querySelector(".submitBtn").classList.add("disable")
+            }
+        }
+
         const handleNameChange = () => {
             const name = document.querySelector("#name")
-            state.validName.test(name.value) && name.value ? state.name = true : state.name = false;
-            checkInputs()
+            if (state.validName.test(name.value) && name.value) {
+                state.name = true
+                document.querySelector(".invalidName").style.opacity = 0
+                checkAll()
+            } else {
+                state.name = false
+                document.querySelector(".invalidName").style.opacity = 1;
+                checkAll()
+            }
         };
         const handleLastnameChange = () => {
             const lastname = document.querySelector("#lastname")
-            state.validLastname.test(lastname.value) && lastname.value ? state.lastname = true : state.lastname = false;
-            checkInputs()
+            if (state.validLastname.test(lastname.value) && lastname.value) {
+                state.lastname = true
+                document.querySelector(".invalidLastname").style.opacity = 0
+                checkAll()
+            } else {
+                state.lastname = false
+                document.querySelector(".invalidLastname").style.opacity = 1;
+                checkAll()
+            }
+
         };
         const handleEmailChange = () => {
             const email = document.querySelector("#email")
-            state.validEmail.test(email.value) && email.value ? state.email = true : state.email = false;
-            checkInputs()
-        };
-
-        const checkInputs = () => {
-            if (state.name) {
-                document.querySelector(".invalidName").style.opacity = 0
-            } else {
-                document.querySelector(".invalidName").style.opacity = 1;
-                return
-            }
-            if (state.lastname) {
-                document.querySelector(".invalidLastname").style.opacity = 0
-            } else {
-                document.querySelector(".invalidLastname").style.opacity = 1;
-                return
-            }
-            if (state.email) {
+            if (state.validEmail.test(email.value) && email.value) {
                 document.querySelector(".invalidEmail").style.opacity = 0;
+                state.email = true
+                checkAll()
             } else {
+                state.email = false
                 document.querySelector(".invalidEmail").style.opacity = 1;
-                return
+                checkAll()
             }
-            if(state.name && state.email && state.lastname){
-                document.querySelector(".submitBtn").classList.remove("disable")
-            }else{
-                document.querySelector(".submitBtn").classList.add("disable")
+        };
+        const handlePasswordChange = () => {
+            const pass = document.querySelector("#pass")
+            if (pass.value.length >= 6) {
+                document.querySelector(".invalidPass").style.opacity = 0;
+                state.password = true;
+                checkAll()
+            } else {
+                document.querySelector(".invalidPass").style.opacity = 1;
+                state.password = false;
+                checkAll()
+            }
+        }
+        const arePassEqual = () => {
+            const pass = document.querySelector("#pass")
+            const passRep = document.querySelector("#pass_rep")
+            if (pass.value === passRep.value) {
+                document.querySelector(".invalidRepeatPass").style.opacity = 0;
+                state.passwordRepeat = true;
+                checkAll()
+            } else {
+                document.querySelector(".invalidRepeatPass").style.opacity = 1;
+                state.passwordRepeat = false;
+                checkAll()
             }
         }
     </script>
