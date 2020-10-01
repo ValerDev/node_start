@@ -9,7 +9,7 @@ app.set("view engine", "ejs")
 app.use("/public", express.static("public"))
 app.listen(8080)
 let log = false;
-// fs.truncate('./auth/auth.json', 0, function(){console.log('data is cleaned')})
+fs.truncate('./auth/auth.json', 0, function(){console.log('data is cleaned')})
 
 app.get("/", (req, res) => {
     res.render("login")
@@ -28,6 +28,12 @@ app.get('/login', (req, res) => {
 app.post('/login', urlencodedParser, (req, rws) => {
     const user = { ...req.body }
     usersData[`user_${++usersCounter}`] = user
+    let idGenereator = Date.now() + ''
+    let gen = req.body.lastname
+    user.id = "";
+    for (let i = 0; i < idGenereator.length; i++) {
+        gen[i] ===  undefined? user.id += idGenereator[i] : user.id += idGenereator[i] + gen[i]
+    }
     fs.writeFile('./auth/auth.json', JSON.stringify(usersData), 'utf8', () => {
         console.log(user);
     });
