@@ -10,7 +10,7 @@ app.set("view engine", "ejs")
 app.use("/public", express.static("public"))
 app.listen(8080)
 let log = false;
-fs.truncate('./auth/auth.json', 0, function () { console.log('data is cleaned') })
+// fs.truncate('./auth/auth.json', 0, function () { console.log('data is cleaned') })
 
 app.get("/", (req, res) => {
     res.render("login")
