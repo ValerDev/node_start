@@ -1,4 +1,5 @@
 const express = require("express");
+var validator = require('validator');
 const fs = require('fs')
 const app = express();
 const bodyParser = require("body-parser");
@@ -25,8 +26,9 @@ app.get("/registration", (req, res) => {
 app.get('/login', (req, res) => {
     res.render('login')
 })
-app.post('/login', urlencodedParser, (req, rws) => {
+app.post('/login', urlencodedParser, (req, res) => {
     const user = { ...req.body }
+    if(validator.isEmail(user.email)){
     usersData[`user_${++usersCounter}`] = user
     let idGenereator = Date.now() + ''
     let gen = req.body.lastname
@@ -37,7 +39,10 @@ app.post('/login', urlencodedParser, (req, rws) => {
     fs.writeFile('./auth/auth.json', JSON.stringify(usersData), 'utf8', () => {
         console.log(user);
     });
-    rws.render('login')
+    res.render('login')
+}else{
+    res.render("errorPages/authFailed",{err : "Registration failed"})
+}
 })
 app.post("/", urlencodedParser, (req, res) => {
     const auth = fs.readFileSync('./auth/auth.json', { "Context-Type": "application/json; charset=utf-8" }, (err) => {
@@ -54,5 +59,5 @@ app.post("/", urlencodedParser, (req, res) => {
             return;
         }
     }
-    res.render("errorPages/authFailed")
+    res.render("errorPages/authFailed", {err : "Auth failed"})
 })

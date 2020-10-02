@@ -15,6 +15,10 @@
             cursor: not-allowed !important;
         }
 
+        .close {
+            display: none !important;
+        }
+
         .invalidName,
         .invalidEmail,
         .invalidLastname,
@@ -29,12 +33,32 @@
             transition: .3s;
             pointer-events: none;
         }
-        .haveAccount{
+
+        .haveAccount {
             color: #74b05b;
             font-size: 10px;
         }
-        .haveAccount a{
+
+        .haveAccount a {
             color: #468c3d;
+        }
+
+        .regFailed {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(0, 0, 0, .5);
+        }
+
+        .regFailed span {
+            color: #74b05b;
+            font-size: 30px;
         }
     </style>
 </head>
@@ -64,11 +88,11 @@
                             <option value="Female">Female</option>
                         </select>
                     </label>
-                    <label for="birthday">Birthday 
+                    <label for="birthday">Birthday
                         <input type="date" id="birthday" name="birthday">
                     </label>
                     <label for="profilePic" style="    padding: 0em 0 .5em 0px;" class="choosePic">Select a profile
-                        picture 
+                        picture
                         <button type="button" class="picBtn">Choose file
                             <input type="file" id="profilePic" name="profilePic">
                         </button>
@@ -82,7 +106,8 @@
                     </label>
                     <label for="password">
                         Password *
-                        <input type="password" id="pass" name="password" placeholder="Password" autocomplete="off" onchange="handlePasswordChange()">
+                        <input type="password" id="pass" name="password" placeholder="Password" autocomplete="off"
+                            onchange="handlePasswordChange()">
                         <p class="invalidPass">Password must contain min 6 chars</p>
                     </label>
                     <label for="confirmPassword">
@@ -92,7 +117,7 @@
                         <p class="invalidRepeatPass">Passwords not equal</p>
                     </label>
                 </div>
-                <button class="submitBtn disable" type="button" >Sign up</button>
+                <button class="submitBtn disable" type="button">Sign up</button>
                 <span class="haveAccount">Do you have an account?<a href="/login"> sign in </a></span>
 
             </form>
