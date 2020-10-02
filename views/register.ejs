@@ -45,47 +45,47 @@
             <form method="POST" action="/login" onclick="checkAll()">
                 <div class="block">
                     <label for="name">
-                        Name
+                        Name *
                         <input type="text" id="name" name="name" placeholder="Name" autocomplete="off"
                             onchange="handleNameChange()">
                         <p class="invalidName">Name must contain only letters </p>
                     </label>
                     <label for="Lastname">
-                        Lastname
+                        Lastname *
                         <input type="text" id="lastname" name="lastname" placeholder="Lastame" autocomplete="off"
                             onchange="handleLastnameChange()">
                         <p class="invalidLastname">Lastname must contain only letters </p>
 
                     </label>
-                    <label for="gender">Gender 
+                    <label for="gender">Gender *
                         <select name="gender" id="Male">
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                         </select>
                     </label>
-                    <label for="birthday">Birthday *
+                    <label for="birthday">Birthday 
                         <input type="date" id="birthday" name="birthday">
                     </label>
                     <label for="profilePic" style="    padding: 0em 0 .5em 0px;" class="choosePic">Select a profile
-                        picture *
+                        picture 
                         <button type="button" class="picBtn">Choose file
                             <input type="file" id="profilePic" name="profilePic">
                         </button>
                     </label>
                     <label for="email">
-                        Email
+                        Email *
                         <input type="email" name="email" id="email" placeholder="Email" autocomplete="off"
                             onchange="handleEmailChange()">
                         <p class="invalidEmail">Invalid email</p>
 
                     </label>
                     <label for="password">
-                        Password
+                        Password *
                         <input type="password" id="pass" name="password" placeholder="Password" autocomplete="off" onchange="handlePasswordChange()">
                         <p class="invalidPass">Password must contain min 6 chars</p>
                     </label>
                     <label for="confirmPassword">
-                        Repeat Password
+                        Repeat Password *
                         <input type="password" id="pass_rep" name="repeat_password" placeholder="Repeat  Password"
                             autocomplete="off" onchange="arePassEqual()">
                         <p class="invalidRepeatPass">Passwords not equal</p>
@@ -105,7 +105,7 @@
             lastname: false,
             password: false,
             passwordRepeat: false,
-            validEmail: /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/,
+            validEmail: /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/,
             validName: /^[a-zA-Z\-]+$/,
             validLastname: /^[a-zA-Z\-]+$/
         }
