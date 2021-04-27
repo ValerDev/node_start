@@ -28,21 +28,21 @@ app.get('/login', (req, res) => {
 })
 app.post('/login', urlencodedParser, (req, res) => {
     const user = { ...req.body }
-    if(validator.isEmail(user.email)){
-    usersData[`user_${++usersCounter}`] = user
-    let idGenereator = Date.now() + ''
-    let gen = req.body.lastname
-    user.id = "";
-    for (let i = 0; i < idGenereator.length; i++) {
-        gen[i] === undefined ? user.id += idGenereator[i] : user.id += idGenereator[i] + gen[i]
+    if (validator.isEmail(user.email)) {
+        usersData[`user_${++usersCounter}`] = user
+        let idGenereator = Date.now() + ''
+        let gen = req.body.lastname
+        user.id = "";
+        for (let i = 0; i < idGenereator.length; i++) {
+            gen[i] === undefined ? user.id += idGenereator[i] : user.id += idGenereator[i] + gen[i]
+        }
+        fs.writeFile('./auth/auth.json', JSON.stringify(usersData), 'utf8', () => {
+            console.log(user);
+        });
+        res.render('login')
+    } else {
+        res.render("errorPages/authFailed", { err: "Registration failed" })
     }
-    fs.writeFile('./auth/auth.json', JSON.stringify(usersData), 'utf8', () => {
-        console.log(user);
-    });
-    res.render('login')
-}else{
-    res.render("errorPages/authFailed",{err : "Registration failed"})
-}
 })
 app.post("/", urlencodedParser, (req, res) => {
     const auth = fs.readFileSync('./auth/auth.json', { "Context-Type": "application/json; charset=utf-8" }, (err) => {
@@ -59,5 +59,5 @@ app.post("/", urlencodedParser, (req, res) => {
             return;
         }
     }
-    res.render("errorPages/authFailed", {err : "Auth failed"})
+    res.render("errorPages/authFailed", { err: "Auth failed" })
 })
